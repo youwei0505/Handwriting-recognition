@@ -1,0 +1,17 @@
+#include <SoftwareSerial.h>
+SoftwareSerial ESP8266(10, 11);
+#define ESP8266_Reset_Pin 12
+
+void setup() {
+	pinMode(ESP8266_Reset_Pin, OUTPUT);
+	digitalWrite(ESP8266_Reset_Pin, HIGH);
+	delay(500);
+	Serial.begin(9600);delay(500);
+	ESP8266.begin(9600);delay(500);
+	}
+void loop() {
+if (ESP8266.available())
+Serial.write(ESP8266.read());
+if (Serial.available())
+ESP8266.write(Serial.read());
+}
